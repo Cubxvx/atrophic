@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTrends Daily - Latest Technology News & Reviews</title>
+    <meta name="description" content="Stay updated with the latest technology trends, reviews, and insights. Your daily dose of tech news and analysis.">
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="TechTrends Daily - Latest Technology News">
+    <meta property="og:description" content="Your daily source for technology news, reviews, and trends">
+    <meta property="og:type" content="website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.8s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            padding: 4rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Ad Spaces */
+        .ad-space {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .ad-space:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+        }
+
+        .ad-space.banner {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-space.sidebar {
+            height: 300px;
+            width: 300px;
+            margin: 1rem auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* Articles */
+        .articles {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .article {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.15);
+        }
+
+        .article h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .article .meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .widget h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .widget ul {
+            list-style: none;
+        }
+
+        .widget li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .widget li:last-child {
+            border-bottom: none;
+        }
+
+        .widget a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .widget a:hover {
+            color: #667eea;
+        }
+
+        /* Automation Panel */
+        .automation-panel {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 200;
+            width: 280px;
+        }
+
+        .automation-panel h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .control-group select,
+        .control-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .control-group select:focus,
+        .control-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .automation-button {
+            width: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .automation-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .stats-item {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .automation-panel {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                width: 100%;
+                margin: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">TechTrends Daily</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tech">Technology</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Welcome to TechTrends Daily</h1>
+            <p>Your ultimate destination for the latest technology news, reviews, and insights</p>
+            <a href="#content" class="cta-button">Explore Latest Articles</a>
+        </section>
+
+        <!-- Banner Ad Space -->
+        <div class="ad-space banner" onclick="simulateAdClick('banner')">
+            🎯 PREMIUM AD SPACE - 728x90 Banner | Click Rate: <span id="banner-clicks">0</span> clicks
+        </div>
+
+        <div class="main-content" id="content">
+            <div class="content-grid">
+                <main class="articles" id="articles-container">
+                    <!-- Articles will be generated here -->
+                </main>
+
+                <aside class="sidebar">
+                    <!-- Sidebar Ad -->
+                    <div class="ad-space sidebar" onclick="simulateAdClick('sidebar')">
+                        💰 SIDEBAR AD<br>300x250<br>High CTR Zone<br><span id="sidebar-clicks">0</span> clicks
+                    </div>
+
+                    <div class="widget">
+                        <h3>🔥 Trending Topics</h3>
+                        <ul id="trending-topics">
+                            <li><a href="#">Artificial Intelligence</a></li>
+                            <li><a href="#">Cloud Computing</a></li>
+                            <li><a href="#">Cybersecurity</a></li>
+                            <li><a href="#">Mobile Technology</a></li>
+                            <li><a href="#">Web Development</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3>📊 Site Statistics</h3>
+                        <div class="stats">
+                            <div class="stats-item">📈 Page Views: <span id="page-views">1,247</span></div>
+                            <div class="stats-item">👥 Visitors: <span id="visitors">892</span></div>
+                            <div class="stats-item">💰 Ad Revenue: $<span id="ad-revenue">45.67</span></div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Bottom Banner Ad -->
+        <div class="ad-space banner" onclick="simulateAdClick('bottom')">
+            🚀 BOTTOM BANNER AD - 728x90 | Revenue: $<span id="bottom-revenue">12.34</span>
+        </div>
+    </div>
+
+    <!-- Automation Control Panel -->
+    <div class="automation-panel">
+        <h3>🤖 Automation Control</h3>
+        
+        <div class="control-group">
+            <label for="content-topic">Content Topic:</label>
+            <select id="content-topic">
+                <option value="ai">Artificial Intelligence</option>
+                <option value="web">Web Development</option>
+                <option value="mobile">Mobile Tech</option>
+                <option value="security">Cybersecurity</option>
+                <option value="cloud">Cloud Computing</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="post-frequency">Post Frequency (hours):</label>
+            <input type="number" id="post-frequency" min="1" max="24" value="2">
+        </div>
+
+        <button class="automation-button" onclick="generateContent()">
+            <span id="generate-text">🚀 Generate Content</span>
+        </button>
+
+        <button class="automation-button" onclick="toggleAutoPublish()">
+            <span id="auto-text">▶️ Start Auto-Publish</span>
+        </button>
+
+        <button class="automation-button" onclick="optimizeAds()">
+            💰 Optimize Ad Placement
+        </button>
+
+        <div class="stats">
+            <div class="stats-item">📝 Articles: <span id="article-count">5</span></div>
+            <div class="stats-item">🎯 Ad CTR: <span id="ad-ctr">2.3%</span></div>
+            <div class="stats-item">💵 RPM: $<span id="rpm">1.85</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Sample articles data
+        const articleTemplates = {
+            ai: [
+                "The Future of Artificial Intelligence in Everyday Life",
+                "Machine Learning Breakthrough: New Algorithm Achieves 99% Accuracy",
+                "AI Ethics: Navigating the Challenges of Autonomous Systems",
+                "ChatGPT vs Google Bard: Comprehensive Comparison 2025"
+            ],
+            web: [
+                "React 19 Features That Will Change Web Development",
+                "CSS Grid vs Flexbox: When to Use Each Layout Method",
+                "Building Progressive Web Apps: A Complete Guide",
+                "WebAssembly: The Future of High-Performance Web Applications"
+            ],
+            mobile: [
+                "iPhone 16 vs Samsung Galaxy S25: Ultimate Comparison",
+                "5G Technology: How It's Transforming Mobile Experiences",
+                "Top 10 Mobile App Development Frameworks in 2025",
+                "Mobile Security: Protecting Your Data in the Digital Age"
+            ],
+            security: [
+                "Zero Trust Security: Implementation Best Practices",
+                "Latest Cybersecurity Threats and How to Combat Them",
+                "Quantum Cryptography: The Next Frontier in Data Protection",
+                "Password Managers: Essential Tools for Digital Security"
+            ],
+            cloud: [
+                "AWS vs Azure vs Google Cloud: 2025 Comparison",
+                "Serverless Computing: Benefits and Use Cases",
+                "Multi-Cloud Strategy: Advantages and Implementation",
+                "Cloud Migration: Step-by-Step Planning Guide"
+            ]
+        };
+
+        // Initialize variables
+        let articleCount = 5;
+        let pageViews = 1247;
+        let visitors = 892;
+        let adRevenue = 45.67;
+        let bannerClicks = 0;
+        let sidebarClicks = 0;
+        let bottomClicks = 0;
+        let isAutoPublishing = false;
+        let autoInterval;
+
+        // Initialize the website
+        function initializeWebsite() {
+            generateInitialContent();
+            startRealTimeUpdates();
+        }
+
+        // Generate initial content
+        function generateInitialContent() {
+            const topics = ['ai', 'web', 'mobile', 'security', 'cloud'];
+            topics.forEach(topic => {
+                const title = articleTemplates[topic][Math.floor(Math.random() * articleTemplates[topic].length)];
+                createArticle(title, topic);
+            });
+        }
+
+        // Create an article
+        function createArticle(title, topic) {
+            const articlesContainer = document.getElementById('articles-container');
+            const article = document.createElement('article');
+            article.className = 'article fade-in';
+            
+            const readTime = Math.floor(Math.random() * 10) + 3;
+            const publishTime = new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000);
+            
+            article.innerHTML = `
+                <h2>${title}</h2>
+                <div class="meta">
+                    📅 ${publishTime.toLocaleDateString()} | ⏱️ ${readTime} min read | 🏷️ ${topic.toUpperCase()}
+                </div>
+                <p>${generateExcerpt(topic)}</p>
+                <a href="#" class="read-more" onclick="simulatePageView()">Read More →</a>
+            `;
+            
+            articlesContainer.insertBefore(article, articlesContainer.firstChild);
+        }
+
+        // Generate article excerpt based on topic
+        function generateExcerpt(topic) {
+            const excerpts = {
+                ai: "Artificial intelligence continues to reshape industries with groundbreaking innovations. From machine learning algorithms to neural networks, discover how AI is transforming our digital landscape and what it means for the future of technology.",
+                web: "Web development evolves rapidly with new frameworks, tools, and methodologies. Stay ahead of the curve with the latest trends in frontend and backend technologies that are defining modern web experiences.",
+                mobile: "Mobile technology advances at lightning speed, bringing new features and capabilities to billions of users worldwide. Explore the latest developments in smartphones, apps, and mobile computing.",
+                security: "Cybersecurity remains a critical concern as threats become more sophisticated. Learn about the latest security measures, best practices, and technologies protecting our digital infrastructure.",
+                cloud: "Cloud computing continues to revolutionize how businesses operate and scale. Discover the latest trends in cloud services, architectures, and strategies for digital transformation."
+            };
+            return excerpts[topic] || "Stay updated with the latest technology trends and insights that matter most in today's digital world.";
+        }
+
+        // Generate new content
+        function generateContent() {
+            const generateBtn = document.getElementById('generate-text');
+            const topic = document.getElementById('content-topic').value;
+            
+            generateBtn.innerHTML = '<span class="loading"></span> Generating...';
+            
+            setTimeout(() => {
+                const title = articleTemplates[topic][Math.floor(Math.random() * articleTemplates[topic].length)];
+                createArticle(title, topic);
+                articleCount++;
+                updateStats();
+                generateBtn.innerHTML = '🚀 Generate Content';
+                
+                // Show success message
+                showNotification('✅ New article generated successfully!');
+            }, 2000);
+        }
+
+        // Toggle auto-publishing
+        function toggleAutoPublish() {
+            const autoBtn = document.getElementById('auto-text');
+            const frequency = parseInt(document.getElementById('post-frequency').value);
+            
+            if (!isAutoPublishing) {
+                isAutoPublishing = true;
+                autoBtn.innerHTML = '⏸️ Stop Auto-Publish';
+                
+                autoInterval = setInterval(() => {
+                    const topics = ['ai', 'web', 'mobile', 'security', 'cloud'];
+                    const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+                    const title = articleTemplates[randomTopic][Math.floor(Math.random() * articleTemplates[randomTopic].length)];
+                    
+                    createArticle(title, randomTopic);
+                    articleCount++;
+                    updateStats();
+                    showNotification('🤖 Auto-generated: New article published!');
+                }, frequency * 60 * 60 * 1000); // Convert hours to milliseconds
+                
+                showNotification(`🚀 Auto-publishing started! New articles every ${frequency} hours.`);
+            } else {
+                isAutoPublishing = false;
+                autoBtn.innerHTML = '▶️ Start Auto-Publish';
+                clearInterval(autoInterval);
+                showNotification('⏸️ Auto-publishing stopped.');
+            }
+        }
+
+        // Optimize ad placement
+        function optimizeAds() {
+            showNotification('🔄 Optimizing ad placement...');
+            
+            setTimeout(() => {
+                const ctrIncrease = (Math.random() * 0.5 + 0.1).toFixed(1);
+                const currentCtr = parseFloat(document.getElementById('ad-ctr').textContent);
+                const newCtr = (currentCtr + parseFloat(ctrIncrease)).toFixed(1);
+                
+                document.getElementById('ad-ctr').textContent = newCtr;
+                
+                const rpmIncrease = (Math.random() * 0.3 + 0.1).toFixed(2);
+                const currentRpm = parseFloat(document.getElementById('rpm').textContent);
+                const newRpm = (currentRpm + parseFloat(rpmIncrease)).toFixed(2);
+                
+                document.getElementById('rpm').textContent = newRpm;
+                
+                showNotification(`✅ Ads optimized! CTR increased by ${ctrIncrease}%, RPM increased by $${rpmIncrease}`);
+            }, 3000);
+        }
+
+        // Simulate ad clicks
+        function simulateAdClick(adType) {
+            const revenuePerClick = (Math.random() * 0.5 + 0.1).toFixed(2);
+            
+            if (adType === 'banner') {
+                bannerClicks++;
+                document.getElementById('banner-clicks').textContent = bannerClicks;
+            } else if (adType === 'sidebar') {
+                sidebarClicks++;
+                document.getElementById('sidebar-clicks').textContent = sidebarClicks;
+            } else if (adType === 'bottom') {
+                bottomClicks++;
+                const currentRevenue = parseFloat(document.getElementById('bottom-revenue').textContent);
+                document.getElementById('bottom-revenue').textContent = (currentRevenue + parseFloat(revenuePerClick)).toFixed(2);
+            }
+            
+            adRevenue += parseFloat(revenuePerClick);
+            updateStats();
+            showNotification(`💰 Ad clicked! Earned $${revenuePerClick}`);
+        }
+
+        // Simulate page view
+        function simulatePageView() {
+            pageViews += Math.floor(Math.random() * 3) + 1;
+            if (Math.random() > 0.7) visitors++;
+            updateStats();
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('article-count').textContent = articleCount;
+            document.getElementById('page-views').textContent = pageViews.toLocaleString();
+            document.getElementById('visitors').textContent = visitors.toLocaleString();
+            document.getElementById('ad-revenue').textContent = adRevenue.toFixed(2);
+        }
+
+        // Start real-time updates
+        function startRealTimeUpdates() {
+            setInterval(() => {
+                // Simulate organic traffic
+                if (Math.random() > 0.8) {
+                    pageViews += Math.floor(Math.random() * 5) + 1;
+                    if (Math.random() > 0.6) visitors++;
+                    updateStats();
+                }
+                
+                // Simulate ad revenue
+                if (Math.random() > 0.9) {
+                    adRevenue += Math.random() * 0.2;
+                    updateStats();
+                }
+            }, 5000);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(45deg, #4CAF50, #45a049);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: 600;
+                animation: slideDown 0.5s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.5s ease forwards';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeWebsite);
+
+        // Add some interactivity to navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                simulatePageView();
+            });
+        });
+    </script>
+</body>
+</html>
